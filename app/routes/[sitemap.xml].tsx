@@ -1,7 +1,7 @@
 import { padShowNumber } from "~/utils/padShowNumber";
 import { Show } from "./syntax/$show";
 
-let siteUrl = "https://syntax.fm";
+let siteUrl = "https://remix-demo-matthew-kelly.vercel.app";
 
 export async function loader() {
   const response = await fetch("https://syntax.fm/api/shows");
