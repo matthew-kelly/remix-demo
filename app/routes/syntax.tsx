@@ -21,9 +21,9 @@ export function meta() {
   };
 }
 
-export const handle = {
-  // object you can put anything in
-};
+// export const handle = {
+//   // object you can put anything in
+// };
 
 export let loader: LoaderFunction = async () => {
   const response = await fetch("https://syntax.fm/api/shows");
@@ -56,7 +56,7 @@ export default function SyntaxPage() {
             ))}
           </nav>
         </aside>
-        <Outlet />
+        <Outlet context={{ podcastName }} />
       </section>
     </div>
   );

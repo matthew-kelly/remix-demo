@@ -34,6 +34,11 @@ export async function loader() {
         <priority>1.0</priority>
         <changefreq>daily</changefreq>
       </url>
+      <url>
+        <loc>${siteUrl}/syntax/about</loc>
+        <priority>1.0</priority>
+        <changefreq>daily</changefreq>
+      </url>
       ${showsXML}
     </urlset>`;
   return new Response(sitemap, {

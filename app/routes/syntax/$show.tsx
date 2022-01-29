@@ -1,4 +1,10 @@
-import { json, redirect, useCatch, useLoaderData } from "remix";
+import {
+  json,
+  redirect,
+  useCatch,
+  useLoaderData,
+  useOutletContext,
+} from "remix";
 import type { LoaderFunction } from "remix";
 import styles from "~/styles/syntax/show.css";
 import { padShowNumber } from "~/utils/padShowNumber";
@@ -20,17 +26,17 @@ export let links = () => {
   ];
 };
 
-export function headers() {
-  // return http headers
-  // most common use is caching
-}
+// export function headers() {
+//   // return http headers
+//   // most common use is caching
+// }
 
 // Action
 // handle data mutations or other actions
 // has the same API as a loader, called when a post/put/patch/delete request is made
-export function action() {
-  // most common use is for forms
-}
+// export function action() {
+//   // most common use is for forms
+// }
 
 // server only loader function
 export let loader: LoaderFunction = async ({ params }) => {
@@ -61,8 +67,10 @@ export function CatchBoundary() {
 
 export default function Show() {
   const show = useLoaderData<Show>();
+  const { podcastName }: { podcastName: string } = useOutletContext();
   return (
     <section className="show-details">
+      <h3>{podcastName}</h3>
       <h2>
         #{show.number}: {show.title}
       </h2>
