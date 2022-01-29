@@ -64,6 +64,7 @@ hr {
 }
 
 input:where([type="text"]),
+input:where([type="email"]),
 input:where([type="search"]) {
   display: block;
   border: 1px solid var(--color-border);

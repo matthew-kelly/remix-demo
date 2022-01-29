@@ -1,0 +1,16 @@
+.cols {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+}
+
+.playlist {
+  font-size: 14px;
+  margin-right: 1rem;
+}
+
+.show-details {
+  position: sticky;
+  top: 0;
+  overflow-y: scroll;
+  height: calc(100vh - 63px);
+}

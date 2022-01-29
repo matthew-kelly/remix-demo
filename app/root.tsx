@@ -60,6 +60,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
 // https://remix.run/docs/en/v1/api/conventions#catchboundary
 export function CatchBoundary() {
   let caught = useCatch();
+  console.log(caught);
 
   let message;
   switch (caught.status) {
@@ -133,7 +134,10 @@ function Layout({ children }: { children: React.ReactNode }) {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/demo">Demo</Link>
+                <Link to="/syntax">Syntax</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
               </li>
             </ul>
           </nav>
