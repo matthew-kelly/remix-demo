@@ -134,7 +134,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/syntax">Syntax</Link>
+                <Link to="/episodes">Episodes</Link>
               </li>
               <li>
                 <Link to="/contact">Contact</Link>
@@ -148,7 +148,12 @@ function Layout({ children }: { children: React.ReactNode }) {
       </div>
       <footer className="remix-app__footer">
         <div className="container remix-app__footer-content">
-          <p>&copy; You!</p>
+          <p>
+            This is a demo site by Matthew Kelly for sampling{" "}
+            <a href="https://remix.run/" target="_blank">
+              Remix
+            </a>
+          </p>
         </div>
       </footer>
     </div>

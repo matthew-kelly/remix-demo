@@ -215,3 +215,33 @@ input:where([type="search"]) {
   margin-top: 0;
   margin-bottom: 0;
 }
+
+section.home {
+  display: grid;
+  grid-template-columns: 200px auto;
+  padding-top: 1rem;
+}
+
+section.home > main {
+  margin-left: 1rem;
+}
+
+section.home > img {
+  max-width: 200px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  section.home {
+    grid-template-columns: auto;
+  }
+
+  section.home > main {
+    margin-left: 0;
+  }
+
+  section.home > img {
+    max-width: 200px;
+    width: 100%;
+  }
+}

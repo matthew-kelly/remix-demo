@@ -1,32 +1,34 @@
+import { LoaderFunction, useLoaderData } from "remix";
+
+export interface Meta {
+  title: string;
+  description: string;
+  link: string;
+  imageURL: string;
+  categories: string[];
+}
+
+export let loader: LoaderFunction = async () => {
+  const podcastFeedParser = require("podcast-feed-parser");
+  const { meta } = await podcastFeedParser.getPodcastFromURL(
+    "https://anchor.fm/s/476c2ff4/podcast/rss"
+  );
+  return {
+    meta,
+  };
+};
+
 export default function Index() {
+  let { meta } = useLoaderData();
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div>
+      <section className="home">
+        <img src={meta.imageURL} alt={meta.title} />
+        <main>
+          <h1>{meta.title}</h1>
+          <p>{meta.description}</p>
+        </main>
+      </section>
     </div>
   );
 }

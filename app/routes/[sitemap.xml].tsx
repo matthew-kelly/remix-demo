@@ -1,16 +1,28 @@
+import formatEpisodeTitle from "~/utils/getEpisodeNumber";
 import { padShowNumber } from "~/utils/padShowNumber";
-import { Show } from "./syntax/$show";
+import { Episode } from "./episodes/$episode";
 
 let siteUrl = "https://remix-demo-matthew-kelly.vercel.app";
 
 export async function loader() {
-  const response = await fetch("https://syntax.fm/api/shows");
-  const shows: Show[] = await response.json();
-  const showsXML: string = shows
+  const podcastFeedParser = require("podcast-feed-parser");
+  const { episodes }: { episodes: Episode[] } =
+    await podcastFeedParser.getPodcastFromURL(
+      "https://anchor.fm/s/476c2ff4/podcast/rss",
+      {
+        fields: {
+          meta: ["title"],
+        },
+        uncleaned: {
+          episodes: [],
+        },
+      }
+    );
+  const episodesXML: string = episodes
     .map(
-      (show) => `
+      (episode) => `
         <url>
-          <loc>${siteUrl}/syntax/${padShowNumber(show.number)}</loc>
+          <loc>${siteUrl}/episodes/${formatEpisodeTitle(episode.title)}</loc>
           <priority>1.0</priority>
           <changefreq>daily</changefreq>
         </url>`
@@ -30,16 +42,11 @@ export async function loader() {
         <changefreq>daily</changefreq>
       </url>
       <url>
-        <loc>${siteUrl}/syntax</loc>
+        <loc>${siteUrl}/episodes</loc>
         <priority>1.0</priority>
         <changefreq>daily</changefreq>
       </url>
-      <url>
-        <loc>${siteUrl}/syntax/about</loc>
-        <priority>1.0</priority>
-        <changefreq>daily</changefreq>
-      </url>
-      ${showsXML}
+      ${episodesXML}
     </urlset>`;
   return new Response(sitemap, {
     headers: {

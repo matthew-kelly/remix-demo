@@ -14,7 +14,7 @@ export async function sendEmail({ to, text }: { to: string; text: string }) {
 
   //send email
   let info = await transporter.sendMail({
-    from: "Syntax <example@syntax.fm>",
+    from: "2 Additional Boleyn Girls <2abg@example.com>",
     to,
     subject: "Potluck Message",
     text,
